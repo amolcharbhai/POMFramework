@@ -3,6 +3,7 @@ package com.crm.qa.pages;
 import java.util.ArrayList;
 import java.util.List;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
@@ -22,6 +23,9 @@ public class HomePage extends TestBase {
 
 	@FindBy(xpath = "//a[contains(text(),'Tasks')]")
 	WebElement tasksLink;
+	
+	@FindBy(xpath = "//a[contains(text(),'New Contact')]")
+	WebElement newContactLink;
 
 	@FindBy(xpath = "//*[@id=\"navMenu\"]/ul/li")
 	List<WebElement> navList;
@@ -52,6 +56,13 @@ public class HomePage extends TestBase {
 	public TaskPage clickOnTaskLink() {
 		tasksLink.click();
 		return new TaskPage();
+	}
+	
+	public void clickOnNewContactLink(){
+		Actions action = new Actions(driver);
+		action.moveToElement(contactsLink).build().perform();
+		newContactLink.click();
+		
 	}
 
 	/**
